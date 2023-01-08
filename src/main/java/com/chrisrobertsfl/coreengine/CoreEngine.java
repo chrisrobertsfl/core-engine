@@ -6,7 +6,7 @@ import java.util.stream.Stream;
 
 public interface CoreEngine {
 
-    CoreEngine init();
+    CoreEngine init(String...ruleFiles);
 
     boolean exists(Object fact);
 
@@ -18,6 +18,7 @@ public interface CoreEngine {
 
     CoreEngine run();
 
+    CoreEngine reset();
     void destroy();
 
     <T> Stream<T> query(String name, Class<T> as);

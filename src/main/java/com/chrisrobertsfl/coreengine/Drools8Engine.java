@@ -32,7 +32,8 @@ public class Drools8Engine implements CoreEngine {
     }
 
     @Override
-    public Drools8Engine init() {
+    public Drools8Engine init(String... moreRuleFiles) {
+        this.ruleFiles.addAll(List.of(moreRuleFiles));
         ruleAdder.add(FILE, ruleFiles);
         session = SessionCreator.create(ruleAdder.getResources());
         trackingAgendaEventListener = new TrackingAgendaEventListener();
@@ -101,6 +102,12 @@ public class Drools8Engine implements CoreEngine {
         consumer.accept(format("focus ---> %s", focus));
         session.getAgenda().getAgendaGroup(focus);
         session.fireAllRules();
+        return this;
+    }
+
+    @Override
+    public CoreEngine reset() {
+        session.dispose();
         return this;
     }
 

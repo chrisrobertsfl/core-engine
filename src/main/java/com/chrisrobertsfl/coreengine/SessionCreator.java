@@ -24,4 +24,6 @@ public class SessionCreator {
         KieContainer container = services.newKieContainer(module.getReleaseId());
         return container.newKieSession();
     }
+
+
 }
