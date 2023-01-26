@@ -1,5 +1,6 @@
 package com.chrisrobertsfl.coreengine;
 
+import lombok.extern.slf4j.Slf4j;
 import org.kie.api.runtime.KieSession;
 import org.kie.api.runtime.rule.QueryResultsRow;
 
@@ -17,7 +18,7 @@ import static java.util.stream.Collectors.toList;
 import static java.util.stream.StreamSupport.stream;
 import static org.apache.commons.lang3.StringUtils.uncapitalize;
 
-// TODO:  Add logging
+@Slf4j
 public class Drools8Engine implements CoreEngine {
     final RuleAdder ruleAdder = new RuleAdder();
     KieSession session;
@@ -128,7 +129,7 @@ public class Drools8Engine implements CoreEngine {
     }
 
     public static class Drools8EngineBuilder {
-        static final Consumer<String> DEFAULT_CONSUMER = System.out::println;
+        static final Consumer<String> DEFAULT_CONSUMER = log::debug;
 
         static final String DEFAULT_FOCUS = "MAIN";
         List<String> ruleFiles = new ArrayList<>();
