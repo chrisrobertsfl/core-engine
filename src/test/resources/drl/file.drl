@@ -1,0 +1,8 @@
+
+
+rule "File resource"
+    when
+
+    then
+        insert("File resource works");
+end

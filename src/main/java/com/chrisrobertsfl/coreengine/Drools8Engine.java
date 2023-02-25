@@ -59,13 +59,12 @@ public class Drools8Engine implements CoreEngine {
         return findAll(type).stream().count() == 1;
     }
 
-    Drools8Engine dumpRules(final String header) {
+    public Drools8Engine dumpRules(final String header) {
         return dumpRules(header, consumer);
     }
 
     Drools8Engine dumpRules(final String header, Consumer<String> consumer) {
         List<RuleInfo> ruleInfos = firedRules();
-        consumer.accept("");
         consumer.accept(format("%s (%d):", header, ruleInfos.size()));
         ruleInfos.stream()
                 .map(ruleInfo -> format("%4d: %s", ruleInfo.position(), ruleInfo.name()))
@@ -73,7 +72,7 @@ public class Drools8Engine implements CoreEngine {
         return this;
     }
 
-    List<RuleInfo> firedRules() {
+    public List<RuleInfo> firedRules() {
         return trackingAgendaEventListener.getFiredRules();
     }
 
@@ -93,7 +92,7 @@ public class Drools8Engine implements CoreEngine {
     }
 
     @Override
-    public CoreEngine insertAll(List<?> facts) {
+    public Drools8Engine insertAll(List<?> facts) {
         facts.forEach(this::insert);
         return this;
     }
@@ -107,7 +106,7 @@ public class Drools8Engine implements CoreEngine {
     }
 
     @Override
-    public CoreEngine reset() {
+    public Drools8Engine reset() {
         session.dispose();
         return this;
     }
@@ -129,7 +128,7 @@ public class Drools8Engine implements CoreEngine {
     }
 
     public static class Drools8EngineBuilder {
-        static final Consumer<String> DEFAULT_CONSUMER = log::debug;
+        static final Consumer<String> DEFAULT_CONSUMER = System.out::println;
 
         static final String DEFAULT_FOCUS = "MAIN";
         List<String> ruleFiles = new ArrayList<>();

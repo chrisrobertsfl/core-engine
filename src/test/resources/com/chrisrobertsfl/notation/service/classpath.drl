@@ -1,0 +1,8 @@
+
+
+rule "Classpath resource"
+    when
+
+    then
+        insert("Classpath resource works");
+end
