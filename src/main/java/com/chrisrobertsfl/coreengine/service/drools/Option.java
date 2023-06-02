@@ -20,8 +20,7 @@ public enum Option {
     static void showFactsConsumer(DroolsEngine droolsEngine) {
         Collection<?> all = droolsEngine.findAll().stream().toList();
         DroolsEngine.log.debug("Working Memory ({}):", all.size());
-        all.stream()
-                .forEach(o -> DroolsEngine.log.debug(String.format("  (%s) -> %s", o.getClass(), o)));
+        all.forEach(o -> DroolsEngine.log.debug(String.format("  (%s) -> %s", o.getClass(), o)));
         DroolsEngine.log.debug("");
     }
 

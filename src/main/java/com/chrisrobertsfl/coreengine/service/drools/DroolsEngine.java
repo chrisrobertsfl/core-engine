@@ -41,6 +41,10 @@ public class DroolsEngine {
                 .collect(toList());
     }
 
+    public KieSession session() {
+        return session;
+    }
+
     public DroolsEngine init() {
         List<Resource> resources = ruleSources.stream()
                 .map(RuleSource::resource)

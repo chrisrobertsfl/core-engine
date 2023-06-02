@@ -1,8 +1,5 @@
 package com.chrisrobertsfl.coreengine;
 
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
-import org.drools.compiler.compiler.JavaDialectConfiguration;
 import org.kie.api.KieServices;
 import org.kie.api.builder.KieBuilder;
 import org.kie.api.builder.KieFileSystem;
@@ -16,10 +13,6 @@ import java.util.List;
 
 public class SessionCreator {
     public static KieSession create(List<Resource> resources) {
-        System.out.println("resources = " + resources);
-        System.out.println("resources.get(0) = " + resources.get(0));
-        System.out.println("resources.get(0) = " + ReflectionToStringBuilder.toString(resources.get(0), ToStringStyle.MULTI_LINE_STYLE));
-
         KieServices services = KieServices.Factory.get();
         KieFileSystem fileSystem = services.newKieFileSystem();
         resources.forEach(fileSystem::write);
